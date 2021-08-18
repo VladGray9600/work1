@@ -18,6 +18,22 @@ exports.users = (req, res) => {
     })
 }
 
+//===========================================================
+//=========== 1.5)Получить юзера по ID ========================
+//===========================================================
+
+
+exports.userById = (req, res) => {
+    const sql = "SELECT * FROM `users` WHERE `id`='"+req.params.id+"'"
+    db.query(sql,(err, results) =>{
+        if(err){
+            console.log(err);
+        } else {
+            response.status(results, res)
+        }
+    })
+}
+
 
 //===========================================================
 //==========  2)Добавить юзера    ==========================
@@ -59,7 +75,7 @@ exports.update = (req, res) => {
 
 
 exports.delete = (req, res) => {
-    const sql = "DELETE FROM `users` WHERE `id`='"+req.query.id+"'"
+    const sql = "DELETE FROM `users` WHERE `id`='"+req.params.id+"'"
     db.query(sql,(err, results) =>{
         if(err){
             console.log(err);
@@ -90,8 +106,8 @@ exports.update = (req, res) => {
 //==  6)Получить всех юзеров, у которых число подписчиков=..
 //===========================================================
 
-/*exports.users = (req, res) => {
-    const sql = "SELECT * FROM `users` WHERE `followers` <= 30 "
+exports.userfol = (req, res) => {
+    const sql = "SELECT * FROM `users` WHERE `followers` <= 10 "
     db.query(sql,(err,results) => {
         if(err){
             console.log(err);
@@ -100,4 +116,3 @@ exports.update = (req, res) => {
         }
     })
 }
-*/
