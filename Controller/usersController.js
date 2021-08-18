@@ -40,7 +40,7 @@ exports.userById = (req, res) => {
 //===========================================================
 
 exports.add = (req, res) => {
-    const sql = "INSERT INTO `users`(`id`, `name`, `description`, `followers`) VALUES('"+req.query.id +"','"+req.query.name+"','"+req.query.description +"','"+req.query.followers+"')";
+    const sql = "INSERT INTO `users`(`name`, `description`, `followers`) VALUES('"+req.body.name+"','"+req.body.description +"','"+req.body.followers+"')";
     db.query(sql,(err, results) => {
         if(err){
             console.log(err);
