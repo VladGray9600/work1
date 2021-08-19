@@ -40,7 +40,7 @@ exports.userById = (req, res) => {
 //===========================================================
 
 exports.add = (req, res) => {
-    const sql = "INSERT INTO `users`(`name`, `description`, `followers`) VALUES('"+req.body.name+"','"+req.body.description +"','"+req.body.followers+"')";
+    const sql = "INSERT INTO `users`(`name`, `email`, `password`) VALUES('"+req.body.name+"','"+req.body.email +"','"+req.body.password+"')";
     db.query(sql,(err, results) => {
         if(err){
             console.log(err);
@@ -57,7 +57,7 @@ exports.add = (req, res) => {
 
 
 exports.update = (req, res) => {
-    const sql = "UPDATE `users` SET `id`='"+req.query.id +"',`name`='"+req.query.name+"',`description`='"+req.query.description+"',`followers`='"+req.query.followers+"'WHERE `id`='"+req.query.id+"'"
+    const sql = "UPDATE `users` SET `name`='"+req.body.name+"',`email`='"+req.body.description+"',`password`='"+req.body.followers+"'WHERE `id`='"+req.params.id+"'"
     db.query(sql,(err, results) => {
         if(err){
             console.log(err);
@@ -90,8 +90,8 @@ exports.delete = (req, res) => {
 //==           5)Изменить кол-во подписчиков юзера 
 //===========================================================
 
-exports.update = (req, res) => {
-    const sql = "UPDATE `users` SET `followers`='"+req.query.followers+"'WHERE `id`='"+req.query.id+"'"
+/*exports.update = (req, res) => {
+    const sql = "UPDATE `users` SET `followers`='"+req.query.followers+"'WHERE `id`='"+req.params.id+"'"
     db.query(sql,(err, results) => {
         if(err){
             console.log(err);
@@ -100,14 +100,14 @@ exports.update = (req, res) => {
         }
     })
 }
-
+*/
 
 //===========================================================
 //==  6)Получить всех юзеров, у которых число подписчиков=..
 //===========================================================
 
 exports.userfol = (req, res) => {
-    const sql = "SELECT * FROM `users` WHERE `followers` <= 10 "
+    const sql = "SELECT * FROM `users` WHERE `followers` <= 5 "
     db.query(sql,(err,results) => {
         if(err){
             console.log(err);
